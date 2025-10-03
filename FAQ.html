@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Главная страница</title>
+	<link rel="stylesheet" href="styles.css">
+	<style>
+		/* Общие стили */
+		body {
+			margin: 0;
+			font-family: Arial, sans-serif;
+			line-height: 1.6;
+			color: #333;
+		}
+
+		.container {
+			width: 90%;
+			max-width: 1200px;
+			margin: 0 auto;
+		}
+
+		h1, h2 {
+			margin: 60px;
+		}
+
+		h3 {
+		margin-top: 20px;
+		}
+
+		a {
+			color: #007BFF;
+			text-decoration: none;
+		}
+
+		a:hover {
+			text-decoration: underline;
+		}
+
+	p {
+			color: black;
+			text-decoration: none;
+		}
+
+		/* Шапка сайта */
+		.header {
+			 background: #333;
+            color: #fff;
+            padding: 1em 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+		}
+
+		.header .logo h1 {
+			margin: 0;
+			font-size: 1.5em;
+		}
+
+		.logo {
+    display: flex;
+    align-items: center; /* Выравнивание элементов по вертикали */
+    gap: 10px; /* Отступ между картинкой и текстом */
+}
+
+.logo img {
+    max-width: 50px; /* Ограничивает размер изображения */
+    height: auto; /* Сохраняет пропорции изображения */
+    cursor: pointer; /* Изменяет курсор на указатель при наведении */
+}
+
+.logo h1 {
+    margin: 0; /* Убирает стандартные отступы */
+    font-size: 24px; /* Размер текста заголовка */
+    font-family: Arial, sans-serif; /* Шрифт для заголовка */
+}
+
+	   /* Стили для кнопки бургер-меню */
+.burger-menu {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 30px; /* Фиксированная ширина кнопки */
+	height: 24px; /* Фиксированная высота кнопки */
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	padding: 0;
+	z-index: 1000; /* Обеспечивает, что кнопка будет на переднем плане */
+	position: fixed; /* Фиксированное позиционирование */
+	top: 30px; /* Отступ сверху от экрана */
+	right: 20px; /* Отступ справа от экрана */
+}
+
+/* Стили для линий меню */
+.burger-menu span {
+	display: block;
+	width: 30px; /* Фиксированная ширина для линий */
+	height: 4px; /* Фиксированная высота для линий */
+	background-color: black; /* Цвет линий */
+	border-radius: 5px;
+}
+
+/* Эффект при наведении (опционально) */
+.burger-menu:hover span {
+	background-color: #ccc;
+}
+
+.nav {
+	position: fixed;
+	top: 0;
+	right: -100%; /* Скрыто за пределами экрана */
+	width: 250px;
+	background-color: #333;
+	display: flex;
+	flex-direction: column;
+	gap: 1em;
+	padding: 60px 20px; /* Внутренний отступ */
+	transition: right 0.3s ease; /* Анимация выезда */
+}
+
+.nav.active {
+	right: 0; /* Показываем меню */
+}
+
+.burger-menu.active span:first-child {
+	transform: translateY(8px) rotate(45deg);
+}
+
+.burger-menu.active span:nth-child(2) {
+	opacity: 0;
+}
+
+.burger-menu.active span:last-child {
+	transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Формы */
+form {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+input {
+	padding: 10px;
+	margin: 5px 0;
+	border-radius: 4px;
+	border: 1px solid #ccc;
+}
+
+button {
+	padding: 10px;
+	background-color: #007bff;
+	color: white;
+	border: none;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+button:hover {
+	background-color: #0056b3;
+}
+
+/* Ссылки между формами */
+p a {
+	color: #007bff;
+	cursor: pointer;
+}
+
+		/* FAQ */
+		.faq {
+			background: #f9f9f9;
+			padding: 2em 0;
+		}
+
+.faq h2 {
+text-align: center;
+}
+
+
+		.faq-item {
+			margin-bottom: 1em;
+		}
+
+		.faq-item h3 {
+			margin-bottom: 0.5em;
+		}
+
+		/* Личный кабинет */
+		.account {
+			padding: 2em 0;
+			text-align: center;
+		}
+
+		.account form {
+			max-width: 400px;
+			margin: 0 auto;
+			display: flex;
+			flex-direction: column;
+			gap: 1em;
+		}
+
+		.account input, .account button {
+			padding: 0.5em;
+			border: 1px solid #ddd;
+			border-radius: 5px;
+			font-size: 1em;
+		}
+
+		.account button {
+			background: #007BFF;
+			color: #fff;
+			cursor: pointer;
+		}
+
+		.account button:hover {
+			background: #0056b3;
+		}
+
+		/* Подвал */
+		.footer {
+			background: #333;
+			color: #fff;
+			text-align: center;
+			padding: 1em 0;
+		}
+
+		/* Медиа-запросы */
+@media (max-width: 768px) {
+	.burger-menu {
+		display: flex;
+	}
+
+	.nav {
+		display: none;
+		width: 100%;
+		padding-top: 60px;
+	}
+
+	.nav.active {
+		display: block;
+	}
+
+	/* Анимация для бургер-меню */
+	.burger-menu.active span:first-child {
+		transform: translateY(9px) rotate(45deg);
+	}
+
+	.burger-menu.active span:nth-child(2) {
+		opacity: 0;
+	}
+
+	.burger-menu.active span:last-child {
+		transform: translateY(-9px) rotate(-45deg);
+	}
+
+	.hero h2 {
+		font-size: 1.8em;
+	}
+
+	.pricing-options {
+		flex-direction: column;
+		align-items: center; /* Центрируем элементы в колонке */
+	}
+
+	.pricing-card {
+		max-width: 100%; /* Позволяет карточкам занимать всю ширину контейнера */
+		margin-bottom: 1em; /* Добавляем отступ между карточками */
+	}
+
+	.pricing-card button {
+		width: 100%; /* Кнопки займут всю ширину карточки */
+		max-width: 250px; /* Ограничиваем максимальную ширину кнопки */
+		margin: 0 auto; /* Центрируем кнопку */
+	}
+}
+
+/* Скрытие формы по умолчанию */
+.auth-form[style="display: none;"] {
+	display: none;
+}
+
+		.faq-item .question {
+    font-size: 20px;
+    color: #444;
+    cursor: pointer;
+}
+
+.faq-item .answer {
+    display: none;
+    font-size: 16px;
+    color: #666;
+    margin-top: 10px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.faq-item.active .answer {
+    display: block;
+    max-height: 500px; /* Увеличьте это значение, если ваш ответ длинный */
+    transition: max-height 0.3s ease-in;
+}
+
+/* Стили для кнопки вопросов */
+.faq-item h2 {
+    cursor: pointer;
+}
+
+	</style>
+</head>
+
+<body>
+	<!-- Шапка сайта -->
+	<header class="header">
+	<div class="container">
+<button id="mobile-menu" aria-label="Меню" class="burger-menu">
+			<span></span>
+			<span></span>
+			<span></span>
+		</button>
+		<nav class="nav" id="nav">
+			<ul>
+				<li><a href="#catalog">Каталог</a></li>
+				<li><a href="#pricing">Тарифы</a></li>
+				<li><a href="#about">О нас</a></li>
+				<li><a href="#faq">FAQ</a></li>
+				<li><a href="#contact">Контакты</a></li>
+				<li><a href="#account" class="login-button">Личный кабинет</a></li>
+			</ul>
+		</nav>
+		<div class="logo">
+    <a href="index.html">
+        <img src="/Users/Elena/Downloads/Сайт по йоге/logo.png" alt="Логотип">
+    </a>
+    <h1>Вопросы</h1>
+</div>
+		
+	</div>
+</header>
+
+
+<!-- FAQ -->
+	<section id="faq" class="faq">
+		<div class="container">
+			<h2>FAQ</h2>
+			<div class="faq-item">
+				<h3 class="question">Как оформить подписку?</h3>
+				<p class="answer">Просто выберите тарифный план и следуйте инструкциям.</p>
+			</div>
+			<div class="faq-item">
+				<h3 class="question">Можно ли отменить подписку?</h3>
+				<p class="answer">Да, в любое время через личный кабинет.</p>
+			</div>
+
+			<div class="faq-item">
+				<h3 class="question">Какая нужна подготовка к занятию?</h3>
+				<p class="answer">Да, в любое время через личный кабинет.</p>
+			</div>
+
+			<div class="faq-item">
+				<h3 class="question">Есть ли онлайн-занятия?</h3>
+				<p class="answer">Да, в подписке "Премиум" проходит два онлайн-занятия в месяц. О дате и времени проведения данного занятия приходит уведомление в личный кабинет и дублируется на вашу электронную почту</p>
+			</div>
+
+			<div class="faq-item">
+				<h3 class="question">Какая нужна подготовка к онлайн-занятию??</h3>
+				<p class="answer">Занятия в группе или с преподавателем от полугода и более. Вы должны быть занкомы с пранаямами (дыхательными техниками):
+<br>- уджайи и полное йоговское дыхание
+<br>- капалабхати
+<br>- анулома-вилома
+<br>- уддияна бандха (ознакомиться с техникой выполнения можно по видео)
+<br>И базовыми асанами:
+<br>- адхо/урдхва мукха шванасана (собака мордой вниз/вверх
+<br>- планка/чатуранга
+<br>- вирабхадрасана 1, 2 (поза воина)
+<br>- врикшасана (поза дерева)
+<br>- уттхита триконасана (поза треугольника)</p>
+			</div>
+
+			<div class="faq-item">
+				<h3 class="question">Что нужно установить или подключить для того, чтобы присоединиться к занятию?</h3>
+				<p class="answer">Занятия проходят через ZOOM. Его можно установить как на телефон, так и на компьютер/ноутбук/планшет. Данное приложение бесплатное</p>
+			</div>
+
+			<div class="faq-item">
+				<h3 class="question">Есть ли запись занятия?</h3>
+				<p class="answer">Да, если у вас что-то происходит и вы не можете присутствовать на занятии, то вам будет предоставлена запись данного занятия.</p>
+			</div>
+
+			<div class="faq-item">
+				<h3 class="question">Если мне непонятно выполнение или возник вопрос о выполнении упражнения, могу ли я задать его во время практики?</h3>
+				<p class="answer">Да, конечно. Во время занятия вы можете его задать через чат. Голосом вы можете задать вопросы после окончания практки.</p>
+			</div>
+
+			<div class="faq-item">
+				<h3 class="question">Будут ли меня видеть другие?</h3>
+				<p class="answer">В базовых настройках вас будет видно, но вы можете их изменить. Чаще всего выбирают формат просмотра только организатором конференции.</p>
+			</div>
+		</div>
+	</section>
+
+<section id="account" class="account">
+
+			<div id="subscription" style="margin-top: 2em;">
+				<h3>Подписка</h3>
+				<p>Выберите тарифный план:</p>
+				<button onclick="subscribe('basic')">Оформить Премиум (1000 ₽ / месяц)</button>
+				<button onclick="subscribe('premium')">Оформить Yoga Start (5000 ₽ / месяц)</button>
+			</div>
+
+</section>
+	<!-- Подвал -->
+	<footer class="footer">
+		<div class="container">
+			<p>&copy; 2025 Видеоплатформа. Все права защищены.</p>
+		</div>
+	</footer>
+
+<script>
+		function subscribe(plan) {
+			alert(`Вы выбрали тарифный план: ${plan}. Реализация оплаты на стороне сервера.`);
+		}
+
+document.addEventListener('DOMContentLoaded', function() {
+			const burgerMenu = document.getElementById('burgerMenu');
+			const nav = document.getElementById('nav');
+			
+			// Toggle menu when burger is clicked
+			burgerMenu.addEventListener('click', function() {
+				burgerMenu.classList.toggle('active');
+				nav.classList.toggle('active');
+			});
+
+			// Close menu when clicking on a link
+			document.querySelectorAll('.nav a').forEach(link => {
+				link.addEventListener('click', () => {
+					burgerMenu.classList.remove('active');
+					nav.classList.remove('active');
+				});
+			});
+
+			// Close menu when clicking outside
+			document.addEventListener('click', function(event) {
+				if (!nav.contains(event.target) && !burgerMenu.contains(event.target)) {
+					burgerMenu.classList.remove('active');
+					nav.classList.remove('active');
+				}
+			});
+		});
+
+		// Keep existing subscribe function
+		function subscribe(plan) {
+			alert(`Вы выбрали тарифный план: ${plan}. Реализация оплаты на стороне сервера.`);
+		}
+
+
+document.addEventListener('DOMContentLoaded', function () {
+	const burgerMenu = document.getElementById('mobile-menu');
+	const nav = document.getElementById('nav');
+
+	// Переключение меню
+	burgerMenu.addEventListener('click', function () {
+		burgerMenu.classList.toggle('active');
+		nav.classList.toggle('active');
+	});
+
+	// Закрытие меню при нажатии на ссылку
+	document.querySelectorAll('.nav a').forEach(link => {
+		link.addEventListener('click', function () {
+			burgerMenu.classList.remove('active');
+			nav.classList.remove('active');
+		});
+	});
+
+	// Закрытие меню при нажатии вне его
+	document.addEventListener('click', function (event) {
+		if (!nav.contains(event.target) && !burgerMenu.contains(event.target)) {
+			burgerMenu.classList.remove('active');
+			nav.classList.remove('active');
+		}
+	});
+});
+
+		// Получаем все элементы с классом .faq-item
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        // Добавляем обработчик событий на каждый элемент
+        faqItems.forEach(item => {
+            item.querySelector('.question').addEventListener('click', () => {
+                // Переключаем класс active для отображения/скрытия ответа
+                item.classList.toggle('active');
+            });
+        });
+
+	</script>
+</body>
+</html>

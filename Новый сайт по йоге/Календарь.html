@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Yoga Namaste</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			background-color: #f9f9f9;
+		}
+		
+		header {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			padding: 15px 20px;
+			background-color: #fff;
+			box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+		}
+
+footer {
+  text-align: center;
+  padding: 10px;
+  background: #333;
+  color: #fff;
+}
+		
+		header img {
+			width: 50px;
+			height: 50px;
+			object-fit: contain;
+		}
+		
+		nav ul {
+			list-style: none;
+			display: flex;
+			padding: 0;
+			margin: 0;
+		}
+		
+		nav ul li {
+			margin: 0 15px;
+		}
+		
+		nav ul li a {
+			text-decoration: none;
+			color: #333;
+			font-weight: 500;
+			transition: color 0.3s ease;
+		}
+		
+		nav ul li a:hover {
+			color: #007bff;
+		}
+		
+		#mobile-menu {
+			display: none;
+			font-size: 24px;
+		}
+		
+		.mobile-nav {
+			display: none;
+			position: fixed;
+			top: 70px;
+			left: 0;
+			right: 0;
+			background-color: #fff;
+			padding: 20px;
+			box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+		}
+		
+		.mobile-nav.active {
+			display: block;
+		}
+		
+		.mobile-nav ul {
+			flex-direction: column;
+			gap: 15px;
+		}
+		
+		@media (max-width: 768px) {
+			nav ul {
+				display: none;
+			}
+			
+			#mobile-menu {
+				display: block;
+				cursor: pointer;
+			}
+			
+			.mobile-nav ul li {
+				margin: 10px 0;
+			}
+		}
+
+ .sticky-menu {
+	position: -webkit-sticky; /* Для Safari */
+	position: sticky;
+	top: 0; /* Закрепляем меню в верхней части экрана */
+	background-color: #333; /* Цвет фона */
+	padding: 10px 0; /* Отступы сверху и снизу */
+	z-index: 1000; /* Чтобы меню было поверх других элементов */
+	width: 100%; /* Ширина меню на всю страницу */
+	box-shadow: 0 4px 2px -2px gray; /* Тень под меню */
+  }
+
+  .sticky-menu ul {
+	list-style-type: none; /* Убираем маркеры у списка */
+	margin: 0;
+	padding: 0;
+	text-align: center; /* Выравниваем ссылки по центру */
+  }
+
+  .sticky-menu ul li {
+	display: inline; /* Элементы списка располагаются в ряд */
+	margin: 0 15px; /* Отступы между пунктами меню */
+  }
+
+  .sticky-menu ul li a {
+	color: white; /* Цвет текста */
+	text-decoration: none; /* Убираем подчеркивание */
+	font-size: 18px; /* Размер шрифта */
+	padding: 10px 15px; /* Отступы внутри ссылок */
+  }
+
+
+
+/* Изображение на главной странице */
+
+		.info-section {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Контейнер для картинки */
+        .info-image {
+            float: left; /* Обтекание текста вокруг картинки */
+            margin-right: 20px; /* Отступ справа от картинки */
+            margin-bottom: 10px; /* Отступ снизу для текста */
+            max-width: 300px; /* Ограничиваем ширину картинки */
+        }
+
+        .info-image img {
+            width: 100%; /* Картинка будет занимать всю ширину контейнера */
+            height: auto; /* Пропорциональная высота */
+        }
+
+        /* Контейнер для текста */
+        .welcome-text {
+            overflow: hidden; /* Это гарантирует, что текст будет корректно продолжаться после картинки */
+            text-align: justify; /* Выравнивание текста по ширине */
+        }
+
+        .links a {
+            margin-right: 10px; /* Отступ между ссылками */
+        }
+
+        .info-text p {
+            margin-bottom: 10px;
+        }
+
+        /* Медиазапросы для мобильных устройств */
+        @media (max-width: 768px) {
+            .info-image {
+                float: none; /* Отменяем обтекание картинки */
+                margin-right: 0;
+                margin-bottom: 20px;
+                width: 80%; /* Картинка будет занимать 80% ширины экрана */
+                text-align: center; /* Центрируем картинку */
+                display: block; /* Делает картинку блочным элементом */
+                margin-left: auto; /* Центрирует картинку по горизонтали */
+                margin-right: auto; /* Центрирует картинку по горизонтали */
+            }
+
+            .welcome-text {
+                text-align: left; /* Текст не будет выровнен по ширине, а будет выровнен по левому краю */
+            }
+        }
+
+.info-text {
+	font-size: 1.2em;
+	line-height: 1.6;
+	color: #333;
+}
+
+.info-text > *:first-child {
+	margin-top: 0;
+	padding-top: 0;
+}
+
+.info-text h1 {
+	font-size: 2em;
+	margin: 20px 0;
+	color: #007bff;
+}
+
+.info-text p {
+	margin: 15px 0;
+}
+
+
+		.info-image {
+			line-height: 0;
+		}
+
+		.info-image img {
+			width: 100%;
+			height: auto;
+			border-radius: 8px;
+			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+			display: block;
+			margin: 0;
+			padding: 0;
+		}
+
+		.links {
+			margin: 20px 0;
+		}
+
+		.links a {
+			color: #007bff;
+			text-decoration: none;
+			font-weight: bold;
+			margin-right: 20px;
+			transition: color 0.3s ease;
+			display: inline-block;
+		}
+
+		.links a:hover {
+			color: #0056b3;
+		}
+		
+
+/* Календарь */
+
+		.container {
+			padding: 20px;
+			max-width: 1200px;
+			margin: 0 auto;
+		}
+		
+		.calendar-container {
+			max-width: 1200px;
+			margin: 20px auto;
+			padding: 20px;
+			display: flex;
+			gap: 60px;
+			align-items: flex-start;
+			background-color: #fff;
+			border-radius: 10px;
+			box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+		}
+		
+		.section-title {
+			font-size: 1.5em;
+			font-weight: bold;
+			margin-bottom: 20px;
+			color: #333;
+			position: relative;
+		}
+		
+		.section-title::after {
+			content: '';
+			display: block;
+			width: 50px;
+			height: 3px;
+			background-color: #007bff;
+			margin-top: 5px;
+		}
+		
+		.calendar-section {
+			flex: 1;
+			min-width: 0;
+			display: flex;
+			flex-direction: column;
+		}
+		
+		.calendar {
+			width: 100%;
+			border: 1px solid #e0e0e0;
+			border-radius: 8px;
+			padding: 20px;
+			height: calc(100% - 60px);
+			box-sizing: border-box;
+			background-color: #fff;
+		}
+		
+		.calendar-header {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin-bottom: 20px;
+		}
+		
+		.prev-month, .next-month {
+			background: none;
+			border: none;
+			font-size: 20px;
+			cursor: pointer;
+			width: 40px;
+			height: 40px;
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			transition: background-color 0.3s ease;
+		}
+		
+		.prev-month:hover, .next-month:hover {
+			background-color: #f0f0f0;
+		}
+		
+		.month-year {
+			font-size: 20px;
+			font-weight: bold;
+			color: #333;
+		}
+		
+		.days-of-week {
+			display: grid;
+			grid-template-columns: repeat(7, 1fr);
+			text-align: center;
+			font-weight: bold;
+			margin-bottom: 15px;
+			color: #666;
+		}
+		
+		.days {
+			display: grid;
+			grid-template-columns: repeat(7, 1fr);
+			gap: 8px;
+		}
+		
+		.day {
+			padding: 10px;
+			text-align: center;
+			cursor: pointer;
+			border-radius: 8px;
+			transition: all 0.3s ease;
+			position: relative;
+		}
+		
+		.day:not(:empty):hover {
+			background-color: #e3f2fd;
+		}
+		
+		.day.selected {
+			background-color: #007bff;
+			color: white;
+		}
+		
+		.day.today {
+			border: 2px solid #007bff;
+		}
+		
+		.day.disabled {
+			color: #ccc;
+			cursor: not-allowed;
+		}
+		
+		.time-selection {
+			margin-top: 20px;
+			padding: 20px;
+			border: 1px solid #e0e0e0;
+			border-radius: 8px;
+			background-color: #fff;
+			box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+		}
+		
+		.time-selection.hidden {
+			display: none;
+		}
+		
+		.time-slots {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+			gap: 10px;
+			margin-top: 15px;
+		}
+		
+		.time-slot {
+			padding: 10px;
+			text-align: center;
+			border: 1px solid #e0e0e0;
+			border-radius: 8px;
+			cursor: pointer;
+			transition: all 0.3s ease;
+		}
+		
+		.time-slot.available {
+			background-color: #f8fff9;
+			border-color: #4caf50;
+			color: #4caf50;
+		}
+		
+		.time-slot.unavailable {
+			background-color: #fff5f5;
+			border-color: #ff5252;
+			color: #ff5252;
+			cursor: not-allowed;
+			opacity: 0.7;
+		}
+		
+		.time-slot.selected {
+			background-color: #4caf50;
+			color: white;
+			border-color: #4caf50;
+		}
+		
+		.time-slot.available:hover {
+			background-color: #e8f5e9;
+			transform: translateY(-2px);
+		}
+		
+		.booking-section {
+			flex: 1;
+			min-width: 0;
+		}
+		
+		.contact-form {
+			background-color: #fff;
+			padding: 20px;
+			border-radius: 8px;
+			box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+		}
+		
+		form label {
+			font-weight: bold;
+			margin-bottom: 8px;
+			display: block;
+			color: #333;
+		}
+		
+		form input, form select, form textarea {
+			width: 100%;
+			padding: 12px;
+			border: 1px solid #e0e0e0;
+			border-radius: 8px;
+			margin-bottom: 20px;
+			box-sizing: border-box;
+			transition: border-color 0.3s ease;
+		}
+		
+		form input:focus, form select:focus, form textarea:focus {
+			outline: none;
+			border-color: #007bff;
+		}
+		
+		#message {
+			height: 120px;
+			resize: vertical;
+			min-height: 120px;
+			font-family: inherit;
+		}
+		
+		.form-bottom {
+			margin-top: 20px;
+		}
+		
+		form button {
+			width: 100%;
+			padding: 12px;
+			background-color: #007bff;
+			color: white;
+			border: none;
+			border-radius: 8px;
+			cursor: pointer;
+			font-size: 16px;
+			font-weight: bold;
+			transition: all 0.3s ease;
+		}
+		
+		form button:hover {
+			background-color: #0056b3;
+			transform: translateY(-2px);
+		}
+		
+		.info-text {
+			max-width: 1200px;
+			margin: 20px auto;
+			padding: 20px;
+			font-size: 1.2em;
+			color: #333;
+			line-height: 1.6;
+			text-align: justify;
+			background-color: #fff;
+			border-radius: 10px;
+			box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+		}
+		
+		.info-text a {
+			color: #007bff;
+			text-decoration: none;
+			font-weight: bold;
+			transition: color 0.3s ease;
+		}
+		
+		.info-text a:hover {
+			color: #0056b3;
+		}
+
+
+/* Оформление якорей - новые страницы */
+
+.text {
+			max-width: 1200px;
+			margin: 20px auto;
+			padding: 20px;
+			font-size: 1.2em;
+			color: #333;
+			line-height: 1.6;
+			text-align: justify;
+			background-color: gray;
+			border-radius: 10px;
+			box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+		}
+		
+		.text a {
+			color: #007bff;
+			text-decoration: none;
+			font-weight: bold;
+			transition: color 0.3s ease;
+		}
+		
+		.text a:hover {
+			color: #0056b3;
+		}
+		
+		.toast {
+			position: fixed;
+			bottom: 20px;
+			right: 20px;
+			padding: 15px 25px;
+			background-color: #4caf50;
+			color: white;
+			border-radius: 8px;
+			display: none;
+			animation: slideIn 0.3s ease;
+			z-index: 1000;
+		}
+		
+		@keyframes slideIn {
+			from {
+				transform: translateX(100%);
+			}
+			to {
+				transform: translateX(0);
+			}
+		}
+		
+		@media (max-width: 768px) {
+			.calendar-container {
+				flex-direction: column;
+				gap: 40px;
+				padding: 15px;
+			}
+			
+			.calendar-section, .booking-section {
+				width: 100%;
+			}
+			
+			.day {
+				padding: 8px;
+				font-size: 14px;
+			}
+			
+			.time-slots {
+				grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+			}
+		}
+
+nav {
+		position: relative;
+	}
+	
+	.nav-links {
+		list-style: none;
+		display: flex;
+		padding: 0;
+		margin: 0;
+	}
+	
+	#mobile-menu {
+		display: none;
+		background: none;
+		border: none;
+		font-size: 24px;
+		color: white;
+		cursor: pointer;
+		padding: 10px;
+	}
+	
+	@media (max-width: 768px) {
+		#mobile-menu {
+			display: block;
+		}
+		
+	nav {
+			position: static; /* Change from relative */
+		}
+
+		.nav-links {
+			display: none;
+			position: absolute;
+			top: 100%;
+			left: 0;
+			right: 0;
+			background-color: #333;
+			flex-direction: column;
+			padding: 20px;
+			box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+		text-align: center;
+		}
+		
+		.nav-links.active {
+			display: flex;
+		}
+		
+		.nav-links li {
+			margin: 10px 0;
+			width: 100%;
+		}
+		
+		.nav-links a {
+			display: block;
+			padding: 10px 0;
+			width: 100%;
+		}
+	}
+section {
+			padding: 50px 20px;
+			margin-top: 50px;
+			border-bottom: 1px solid #ddd;
+		}
+
+
+
+	</style>
+</head>
+<body>
+	<header class="sticky-menu">
+		<img src="/Users/Elena/Downloads/Сайт по йоге/logo.png" alt="Логотип">
+		<nav>
+		   
+			<button id="mobile-menu" aria-label="Меню">&#9776;</button>
+		<ul class="nav-links">
+			<li><a href="#info">Главная</a></li>
+				<li><a href="#schedule">Расписание и стоимость</a></li>
+				<li><a href="#courses">Курсы</a></li>
+				<li><a href="#structure">Структура практики</a></li>
+				<li><a href="#about">Обо мне</a></li>
+				<li><a href="#youtube">YouTube</a></li>
+				<li><a href="#faq">FAQ</a></li>
+				<li><a href="#contacts">Контакты</a></li>
+		</ul>
+		</nav>
+	</header>
+
+
+<div id="home" class="page">
+<section id="info">
+	
+		
+<!-- Новый контейнер для текста -->
+			<div class="welcome-text">
+		<div class="info-text">
+<div class="info-image">
+			<img src="/Users/Elena/Downloads/Сайт по йоге/yoga_image.png" alt="Йога">
+		</div>
+			<h2>Мир и гармония со своим телом</h2>
+<p>Регулярная практика йоги — это мощный инструмент, с помощью которого вы сможете получить результат.</p>
+	
+	  <p>Направить внимание внутрь себя. Сбалансировать работу ума и тела и вернуть себе ощущение гармонии. Избавить не только от телесных, но и ментальных блоков. Поддержать свое эмоциональное состояние.</p>
+
+			<div class="links">
+				<a href="https://www.instagram.com/yoga_namaste_me/" target="_blank">Instagram</a>
+				<a href="https://www.youtube.com/user/ElenaBaranenkova" target="_blank">YouTube</a>
+		<a href="https://vk.com/yoga_namaste_ru" target="_blank">VK</a>
+
+<p>Если вы хотите присоединиться к занятиям и узнать все детали о регистрации и оплате, свяжитесь со мной через 
+			<a href="https://wa.me/995599182362">WhatsApp</a> или <a href="https://t.me/yoga_namaste_me">Telegram</a>.</p>
+			
+			<p>Начните свою практику сегодня, чтобы почувствовать легкость и свободу в движениях. Здесь вы найдете путь к гармонии тела и души.</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+</section>
+
+<section id="schedule">
+<div class="text">Расписание и стоимость</div>
+
+	<div class="calendar-container">
+		<div class="calendar-section">
+			<h2 class="section-title">Доступное время занятий (время московское)</h2>
+			<div class="calendar">
+				<div class="calendar-header">
+					<button class="prev-month">&#10094;</button>
+					<span class="month-year"></span>
+					<button class="next-month">&#10095;</button>
+				</div>
+				<div class="calendar-body">
+					<div class="days-of-week">
+						<div>Пн</div>
+						<div>Вт</div>
+						<div>Ср</div>
+						<div>Чт</div>
+						<div>Пт</div>
+						<div>Сб</div>
+						<div>Вс</div>
+					</div>
+					<div class="days"></div>
+				</div>
+			</div>
+
+			<div class="time-selection hidden">
+				<h3>Выберите время: <span class="selected-date"></span></h3>
+				<div class="time-slots"></div>
+			</div>
+		</div>
+
+		<div class="booking-section">
+	<h2 class="section-title">Запись на занятие</h2>
+	<form class="contact-form" id="bookingForm" onsubmit="submitForm(event)">
+		<div>
+
+<form id="applicationForm">
+
+			<label for="name">Имя:</label>
+			<input type="text" id="name" name="name" required placeholder="Введите ваше имя">
+		</div>
+
+		<div>
+			<label for="contact">Контактные данные:</label>
+			<select id="contact" name="contact_type" required>
+				<option value="">Выберите тип контакта</option>
+				<option value="phone">Номер телефона</option>
+				<option value="email">Электронная почта</option>
+				<option value="social">Ссылка на соцсеть</option>
+			</select>
+			
+			<input type="text" id="contact-info" name="contact_info" required>
+		</div>
+
+		<div>
+			<label for="level">Уровень практики:</label>
+			<select id="level" name="level" required>
+				<option value="zero">Нулевой</option>
+				<option value="beginner">Начинающий</option>
+				<option value="intermediate">Продолжающий</option>
+			</select>
+		</div>
+
+		<div>
+			<label for="message">Сообщение:</label>
+			<textarea id="message" name="message" required></textarea>
+		</div>
+
+		<div class="form-bottom">
+			<div>
+				<label for="selected-date-time">Выбранная дата и время:</label>
+				<input type="text" id="selected-date-time" name="date-time" readonly required>
+			</div>
+			<button type="submit">Отправить</button></form>
+
+</form>
+<div id="responseMessage"></div>
+		</div>
+	</form>
+</div>
+	</div>
+
+<!-- Стоимость занятий -->
+<div class="info-text">
+	
+		<h2 class="section-title">Стоимость занятий</h2>
+		<div class="price-grid">
+			<div class="price-card">
+				<h3>Разовое занятие</h3>
+				<div class="price-amount">2000₽</div>
+				<ul class="price-features">
+					<li>Индивидуальный подход</li>
+					<li>Длительность занятия 1 - 1,5 ч</li>
+					<li>Консультация по технике</li>
+				</ul>
+			</div>
+		</div>
+</div>
+	
+
+	<!-- Расписание групповых занятий -->
+<div class="info-text">    
+
+		<h2 class="section-title">Расписание групповых занятий</h2>
+		<div class="schedule-grid">
+			<div class="schedule-card">
+				<h3>Понедельник</h3>
+				<div class="schedule-time">09:00 - 10:00</div>
+				<div class="schedule-description">Утренняя практика для начинающих</div>
+				<div class="schedule-time">19:00 - 20:00</div>
+				<div class="schedule-description">Вечерняя практика всех уровней</div>
+			</div>
+			<div class="schedule-card">
+				<h3>Среда</h3>
+				<div class="schedule-time">09:00 - 10:00</div>
+				<div class="schedule-description">Утренняя практика для начинающих</div>
+				<div class="schedule-time">19:00 - 20:00</div>
+				<div class="schedule-description">Вечерняя практика всех уровней</div>
+			</div>
+			<div class="schedule-card">
+				<h3>Пятница</h3>
+				<div class="schedule-time">09:00 - 10:00</div>
+				<div class="schedule-description">Утренняя практика для начинающих</div>
+				<div class="schedule-time">19:00 - 20:00</div>
+				<div class="schedule-description">Вечерняя практика всех уровней</div>
+			</div>
+		</div>
+</div>
+	
+</section>
+
+
+<section id="courses">
+		<h2>Курсы</h2>
+		<p>Информация о курсах появится здесь.</p>
+	</section>
+
+	<section id="structure">
+		<h2>Структура практики</h2>
+		<p>Подробное описание структуры практики появится здесь.</p>
+	</section>
+
+	<section id="about">
+		<h2>Обо мне</h2>
+		<p>Информация о вашем опыте и квалификации появится здесь.</p>
+	</section>
+
+	<section id="youtube">
+		<h2>YouTube</h2>
+		<p>Ссылка на ваш канал и последние видео появятся здесь.</p>
+	</section>
+
+	<section id="faq">
+		<h2>FAQ</h2>
+		<p>Ответы на частые вопросы появятся здесь.</p>
+	</section>
+
+	<section id="contacts">
+		<h2>Контакты</h2>
+		<p>Контактная информация будет здесь.</p>
+	</section>
+
+<footer>
+	<p>&copy; 2025 Yoga Namaste</p>
+  </footer>
+</body>
+
+	<script>
+
+document.getElementById('mobile-menu').addEventListener('click', () => {
+			document.querySelector('nav ul').classList.toggle('show');
+		});
+
+
+document.getElementById('mobile-menu').addEventListener('click', function() {
+	const navLinks = document.querySelector('.nav-links');
+	navLinks.classList.toggle('active');
+});
+
+// Close menu when clicking outside
+document.addEventListener('click', function(event) {
+	const navLinks = document.querySelector('.nav-links');
+	const mobileMenu = document.getElementById('mobile-menu');
+	
+	if (!navLinks.contains(event.target) && !mobileMenu.contains(event.target) && navLinks.classList.contains('active')) {
+		navLinks.classList.remove('active');
+	}
+});
+
+// Close menu when clicking a link
+document.querySelectorAll('.nav-links a').forEach(link => {
+	link.addEventListener('click', () => {
+		document.querySelector('.nav-links').classList.remove('active');
+	});
+});
+
+		// Структура данных для хранения временных слотов
+	const timeSlotData = {};
+
+timeSlotData['2025-01-01'] = [
+	{ time: '08:00', available: false },
+	{ time: '09:00', available: true },
+	{ time: '10:00', available: true },
+	{ time: '11:00', available: true },
+	{ time: '12:00', available: true },
+	{ time: '13:00', available: true },
+	{ time: '14:00', available: true },
+	{ time: '15:00', available: true },
+	{ time: '16:00', available: true },
+	{ time: '17:00', available: true }
+];
+
+timeSlotData['2025-01-02'] = [
+	{ time: '08:00', available: false },
+	{ time: '09:00', available: true },
+	{ time: '10:00', available: false },
+	{ time: '11:00', available: false },
+	{ time: '12:00', available: true },
+	{ time: '13:00', available: true },
+	{ time: '14:00', available: true },
+	{ time: '15:00', available: true },
+	{ time: '16:00', available: true },
+	{ time: '17:00', available: true }
+];
+timeSlotData['2025-01-03'] = [
+	{ time: '08:00', available: false },
+	{ time: '09:00', available: true },
+	{ time: '10:00', available: true },
+	{ time: '11:00', available: true },
+	{ time: '12:00', available: true },
+	{ time: '13:00', available: true },
+	{ time: '14:00', available: true },
+	{ time: '15:00', available: true },
+	{ time: '16:00', available: true },
+	{ time: '17:00', available: true }
+];
+timeSlotData['2025-01-04'] = [
+	{ time: '08:00', available: false },
+	{ time: '09:00', available: true },
+	{ time: '10:00', available: true },
+	{ time: '11:00', available: true },
+	{ time: '12:00', available: true },
+	{ time: '13:00', available: true },
+	{ time: '14:00', available: true },
+	{ time: '15:00', available: true },
+	{ time: '16:00', available: true },
+	{ time: '17:00', available: true }
+];
+timeSlotData['2025-01-05'] = [
+	{ time: '08:00', available: false },
+	{ time: '09:00', available: true },
+	{ time: '10:00', available: true },
+	{ time: '11:00', available: true },
+	{ time: '12:00', available: true },
+	{ time: '13:00', available: true },
+	{ time: '14:00', available: true },
+	{ time: '15:00', available: true },
+	{ time: '16:00', available: true },
+	{ time: '17:00', available: true }
+];
+timeSlotData['2025-01-06'] = [
+	{ time: '08:00', available: false },
+	{ time: '09:00', available: true },
+	{ time: '10:00', available: false },
+	{ time: '11:00', available: false },
+	{ time: '12:00', available: true },
+	{ time: '13:00', available: true },
+	{ time: '14:00', available: true },
+	{ time: '15:00', available: true },
+	{ time: '16:00', available: true },
+	{ time: '17:00', available: true }
+];
+timeSlotData['2025-01-07'] = [
+	{ time: '08:00', available: false },
+	{ time: '09:00', available: true },
+	{ time: '10:00', available: true },
+	{ time: '11:00', available: true },
+	{ time: '12:00', available: true },
+	{ time: '13:00', available: true },
+	{ time: '14:00', available: true },
+	{ time: '15:00', available: true },
+	{ time: '16:00', available: true },
+	{ time: '17:00', available: true }
+];
+timeSlotData['2025-01-08'] = [
+	{ time: '08:00', available: false },
+	{ time: '09:00', available: true },
+	{ time: '10:00', available: true },
+	{ time: '11:00', available: true },
+	{ time: '12:00', available: true },
+	{ time: '13:00', available: true },
+	{ time: '14:00', available: true },
+	{ time: '15:00', available: true },
+	{ time: '16:00', available: true },
+	{ time: '17:00', available: true }
+];
+timeSlotData['2025-01-09'] = [
+	{ time: '08:00', available: false },
+	{ time: '09:00', available: true },
+	{ time: '10:00', available: true },
+	{ time: '11:00', available: true },
+	{ time: '12:00', available: true },
+	{ time: '13:00', available: true },
+	{ time: '14:00', available: true },
+	{ time: '15:00', available: true },
+	{ time: '16:00', available: true },
+	{ time: '17:00', available: true }
+];
+timeSlotData['2025-01-10'] = [
+	{ time: '08:00', available: false },
+	{ time: '09:00', available: true },
+	{ time: '10:00', available: true },
+	{ time: '11:00', available: true },
+	{ time: '12:00', available: true },
+	{ time: '13:00', available: true },
+	{ time: '14:00', available: true },
+	{ time: '15:00', available: true },
+	{ time: '16:00', available: true },
+	{ time: '17:00', available: true }
+];
+timeSlotData['2025-01-11'] = [
+	{ time: '08:00', available: false },
+	{ time: '09:00', available: true },
+	{ time: '10:00', available: true },
+	{ time: '11:00', available: true },
+	{ time: '12:00', available: true },
+	{ time: '13:00', available: true },
+	{ time: '14:00', available: true },
+	{ time: '15:00', available: true },
+	{ time: '16:00', available: true },
+	{ time: '17:00', available: true }
+];
+timeSlotData['2025-01-12'] = [
+	{ time: '08:00', available: false },
+	{ time: '09:00', available: true },
+	{ time: '10:00', available: true },
+	{ time: '11:00', available: true },
+	{ time: '12:00', available: true },
+	{ time: '13:00', available: true },
+	{ time: '14:00', available: true },
+	{ time: '15:00', available: true },
+	{ time: '16:00', available: true },
+	{ time: '17:00', available: true }
+];
+timeSlotData['2025-01-13'] = [
+	{ time: '08:00', available: false },
+	{ time: '09:00', available: true },
+	{ time: '10:00', available: true },
+	{ time: '11:00', available: true },
+	{ time: '12:00', available: true },
+	{ time: '13:00', available: true },
+	{ time: '14:00', available: true },
+	{ time: '15:00', available: true },
+	{ time: '16:00', available: true },
+	{ time: '17:00', available: true }
+];
+timeSlotData['2025-01-14'] = [
+	{ time: '08:00', available: false },
+	{ time: '09:00', available: true },
+	{ time: '10:00', available: true },
+	{ time: '11:00', available: true },
+	{ time: '12:00', available: true },
+	{ time: '13:00', available: true },
+	{ time: '14:00', available: true },
+	{ time: '15:00', available: true },
+	{ time: '16:00', available: true },
+	{ time: '17:00', available: true }
+];
+timeSlotData['2025-01-15'] = [
+	{ time: '08:00', available: false },
+	{ time: '09:00', available: true },
+	{ time: '10:00', available: true },
+	{ time: '11:00', available: true },
+	{ time: '12:00', available: true },
+	{ time: '13:00', available: true },
+	{ time: '14:00', available: true },
+	{ time: '15:00', available: true },
+	{ time: '16:00', available: true },
+	{ time: '17:00', available: true }
+];
+timeSlotData['2025-01-16'] = [
+	{ time: '08:00', available: false },
+	{ time: '09:00', available: true },
+	{ time: '10:00', available: true },
+	{ time: '11:00', available: true },
+	{ time: '12:00', available: true },
+	{ time: '13:00', available: true },
+	{ time: '14:00', available: true },
+	{ time: '15:00', available: true },
+	{ time: '16:00', available: true },
+	{ time: '17:00', available: true }
+];
+timeSlotData['2025-01-17'] = [
+	{ time: '08:00', available: false },
+	{ time: '09:00', available: true },
+	{ time: '10:00', available: true },
+	{ time: '11:00', available: true },
+	{ time: '12:00', available: true },
+	{ time: '13:00', available: true },
+	{ time: '14:00', available: true },
+	{ time: '15:00', available: true },
+	{ time: '16:00', available: true },
+	{ time: '17:00', available: true }
+];
+timeSlotData['2025-01-18'] = [
+	{ time: '08:00', available: false },
+	{ time: '09:00', available: true },
+	{ time: '10:00', available: true },
+	{ time: '11:00', available: true },
+	{ time: '12:00', available: true },
+	{ time: '13:00', available: true },
+	{ time: '14:00', available: true },
+	{ time: '15:00', available: true },
+	{ time: '16:00', available: true },
+	{ time: '17:00', available: true }
+];
+timeSlotData['2025-01-19'] = [
+	{ time: '08:00', available: false },
+	{ time: '09:00', available: true },
+	{ time: '10:00', available: true },
+	{ time: '11:00', available: true },
+	{ time: '12:00', available: true },
+	{ time: '13:00', available: true },
+	{ time: '14:00', available: true },
+	{ time: '15:00', available: true },
+	{ time: '16:00', available: true },
+	{ time: '17:00', available: true }
+];
+timeSlotData['2025-01-20'] = [
+	{ time: '08:00', available: false },
+	{ time: '09:00', available: true },
+	{ time: '10:00', available: true },
+	{ time: '11:00', available: true },
+	{ time: '12:00', available: true },
+	{ time: '13:00', available: true },
+	{ time: '14:00', available: true },
+	{ time: '15:00', available: true },
+	{ time: '16:00', available: true },
+	{ time: '17:00', available: true }
+];
+timeSlotData['2025-01-21'] = [
+	{ time: '08:00', available: false },
+	{ time: '09:00', available: true },
+	{ time: '10:00', available: true },
+	{ time: '11:00', available: true },
+	{ time: '12:00', available: true },
+	{ time: '13:00', available: true },
+	{ time: '14:00', available: true },
+	{ time: '15:00', available: true },
+	{ time: '16:00', available: true },
+	{ time: '17:00', available: true }
+];
+timeSlotData['2025-01-22'] = [
+	{ time: '08:00', available: false },
+	{ time: '09:00', available: true },
+	{ time: '10:00', available: true },
+	{ time: '11:00', available: true },
+	{ time: '12:00', available: true },
+	{ time: '13:00', available: true },
+	{ time: '14:00', available: true },
+	{ time: '15:00', available: true },
+	{ time: '16:00', available: true },
+	{ time: '17:00', available: true }
+];
+timeSlotData['2025-01-23'] = [
+	{ time: '08:00', available: false },
+	{ time: '09:00', available: true },
+	{ time: '10:00', available: true },
+	{ time: '11:00', available: true },
+	{ time: '12:00', available: true },
+	{ time: '13:00', available: true },
+	{ time: '14:00', available: true },
+	{ time: '15:00', available: true },
+	{ time: '16:00', available: true },
+	{ time: '17:00', available: true }
+];
+timeSlotData['2025-01-24'] = [
+	{ time: '08:00', available: false },
+	{ time: '09:00', available: true },
+	{ time: '10:00', available: true },
+	{ time: '11:00', available: true },
+	{ time: '12:00', available: true },
+	{ time: '13:00', available: true },
+	{ time: '14:00', available: true },
+	{ time: '15:00', available: true },
+	{ time: '16:00', available: true },
+	{ time: '17:00', available: true }
+];
+timeSlotData['2025-01-25'] = [
+	{ time: '08:00', available: false },
+	{ time: '09:00', available: true },
+	{ time: '10:00', available: true },
+	{ time: '11:00', available: true },
+	{ time: '12:00', available: true },
+	{ time: '13:00', available: true },
+	{ time: '14:00', available: true },
+	{ time: '15:00', available: true },
+	{ time: '16:00', available: true },
+	{ time: '17:00', available: true }
+];
+timeSlotData['2025-01-26'] = [
+	{ time: '08:00', available: false },
+	{ time: '09:00', available: true },
+	{ time: '10:00', available: true },
+	{ time: '11:00', available: true },
+	{ time: '12:00', available: true },
+	{ time: '13:00', available: true },
+	{ time: '14:00', available: true },
+	{ time: '15:00', available: true },
+	{ time: '16:00', available: true },
+	{ time: '17:00', available: true }
+];
+timeSlotData['2025-01-27'] = [
+	{ time: '08:00', available: false },
+	{ time: '09:00', available: true },
+	{ time: '10:00', available: true },
+	{ time: '11:00', available: true },
+	{ time: '12:00', available: true },
+	{ time: '13:00', available: true },
+	{ time: '14:00', available: true },
+	{ time: '15:00', available: true },
+	{ time: '16:00', available: true },
+	{ time: '17:00', available: true }
+];
+timeSlotData['2025-01-28'] = [
+	{ time: '08:00', available: false },
+	{ time: '09:00', available: true },
+	{ time: '10:00', available: true },
+	{ time: '11:00', available: true },
+	{ time: '12:00', available: true },
+	{ time: '13:00', available: true },
+	{ time: '14:00', available: true },
+	{ time: '15:00', available: true },
+	{ time: '16:00', available: true },
+	{ time: '17:00', available: true }
+];
+timeSlotData['2025-01-29'] = [
+	{ time: '08:00', available: false },
+	{ time: '09:00', available: true },
+	{ time: '10:00', available: true },
+	{ time: '11:00', available: true },
+	{ time: '12:00', available: true },
+	{ time: '13:00', available: true },
+	{ time: '14:00', available: true },
+	{ time: '15:00', available: true },
+	{ time: '16:00', available: true },
+	{ time: '17:00', available: true }
+];
+timeSlotData['2025-01-30'] = [
+	{ time: '08:00', available: false },
+	{ time: '09:00', available: true },
+	{ time: '10:00', available: true },
+	{ time: '11:00', available: true },
+	{ time: '12:00', available: true },
+	{ time: '13:00', available: true },
+	{ time: '14:00', available: true },
+	{ time: '15:00', available: true },
+	{ time: '16:00', available: true },
+	{ time: '17:00', available: true }
+];
+timeSlotData['2025-01-31'] = [
+	{ time: '08:00', available: false },
+	{ time: '09:00', available: true },
+	{ time: '10:00', available: true },
+	{ time: '11:00', available: true },
+	{ time: '12:00', available: true },
+	{ time: '13:00', available: true },
+	{ time: '14:00', available: true },
+	{ time: '15:00', available: true },
+	{ time: '16:00', available: true },
+	{ time: '17:00', available: true }
+];
+
+
+	// Получаем элементы DOM
+	const calendar = document.querySelector('.calendar');
+	const monthYear = calendar.querySelector('.month-year');
+	const prevMonthButton = calendar.querySelector('.prev-month');
+	const nextMonthButton = calendar.querySelector('.next-month');
+	const daysContainer = calendar.querySelector('.days');
+	const timeSelection = document.querySelector('.time-selection');
+	const timeSlotsContainer = document.querySelector('.time-slots');
+	const selectedDateField = document.querySelector('.selected-date');
+	const selectedDateTimeInput = document.getElementById('selected-date-time');
+
+	let currentDate = new Date();
+
+	const monthNames = [
+		'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
+		'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'
+	];
+
+	const weekDays = [
+		'Воскресенье', 'Понедельник', 'Вторник', 'Среда', 
+		'Четверг', 'Пятница', 'Суббота'
+	];
+
+	// Базовые временные слоты
+	const baseTimeSlots = [
+		'08:00', '09:00', '10:00', '11:00', '12:00',
+		'13:00', '14:00', '15:00', '16:00', '17:00', '18:00'
+	];
+
+	// Функция для получения временных слотов для выбранной даты
+	function getTimeSlotsForDate(year, month, day) {
+		const dateKey = `${year}-${(month + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+		if (!timeSlotData[dateKey]) {
+			timeSlotData[dateKey] = baseTimeSlots.map(time => ({ time, available: true }));
+		}
+		return timeSlotData[dateKey];
+	}
+
+	// Функция для отображения временных слотов
+	function renderTimeSlots(date) {
+		const slots = getTimeSlotsForDate(date.getFullYear(), date.getMonth(), date.getDate());
+		timeSlotsContainer.innerHTML = '';
+
+		slots.forEach(slot => {
+			const slotDiv = document.createElement('div');
+			slotDiv.textContent = slot.time;
+			slotDiv.classList.add('time-slot', slot.available ? 'available' : 'unavailable');
+
+			slotDiv.addEventListener('click', () => {
+				// Убираем выделение со всех слотов
+				document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
+				// Добавляем выделение выбранному слоту
+				slotDiv.classList.add('selected');
+				selectTime(slot.time);
+			});
+
+			timeSlotsContainer.appendChild(slotDiv);
+		});
+	}
+
+	// Функция для отображения календаря
+	function renderCalendar(date) {
+		const month = date.getMonth();
+		const year = date.getFullYear();
+
+		monthYear.textContent = `${monthNames[month]} ${year}`;
+
+		const firstDay = new Date(year, month, 1);
+		const lastDay = new Date(year, month + 1, 0);
+
+		daysContainer.innerHTML = '';
+
+		let firstDayIndex = firstDay.getDay();
+		firstDayIndex = firstDayIndex === 0 ? 6 : firstDayIndex - 1;
+
+		// Пустые ячейки до первого дня месяца
+		for (let i = 0; i < firstDayIndex; i++) {
+			const emptyCell = document.createElement('div');
+			emptyCell.classList.add('day');
+			daysContainer.appendChild(emptyCell);
+		}
+
+		// Дни месяца
+		for (let day = 1; day <= lastDay.getDate(); day++) {
+			const dayCell = document.createElement('div');
+			dayCell.classList.add('day');
+			
+			const dayNumber = document.createElement('span');
+			dayNumber.textContent = day;
+			dayCell.appendChild(dayNumber);
+
+			const slots = getTimeSlotsForDate(year, month, day);
+			// const availableSlots = slots.filter(slot => slot.available).length;
+
+// if (availableSlots > 0) {
+//     const indicator = document.createElement('div');
+//     indicator.classList.add('availability-indicator');
+//     indicator.textContent = `${availableSlots} своб.`;
+//     dayCell.appendChild(indicator);
+// }
+
+			dayCell.addEventListener('click', () => selectDay(year, month, day));
+			daysContainer.appendChild(dayCell);
+		}
+	}
+
+	// Функция для выбора дня
+	function selectDay(year, month, day) {
+		const selectedDate = new Date(year, month, day);
+		selectedDateField.textContent = `${weekDays[selectedDate.getDay()]}, ${day} ${monthNames[month]} ${year}`;
+		selectedDateTimeInput.value = '';
+		timeSelection.classList.remove('hidden');
+		renderTimeSlots(selectedDate);
+	}
+
+	// Функция для выбора времени
+	function selectTime(time) {
+		const selectedDate = selectedDateField.textContent;
+		selectedDateTimeInput.value = `${selectedDate} в ${time}`;
+	}
+
+	// Обработчики для кнопок навигации
+	prevMonthButton.addEventListener('click', () => {
+		currentDate.setMonth(currentDate.getMonth() - 1);
+		renderCalendar(currentDate);
+	});
+
+	nextMonthButton.addEventListener('click', () => {
+		currentDate.setMonth(currentDate.getMonth() + 1);
+		renderCalendar(currentDate);
+	});
+
+	// Инициализация календаря
+	renderCalendar(currentDate);
+
+
+// Добавляем новую функцию для отправки формы
+document.getElementById('applicationForm').addEventListener('submit', function(event) {
+	event.preventDefault();
+
+	const form = event.target;
+	const formData = new FormData(form);
+
+	fetch('send_email.php', {
+		method: 'POST',
+		body: formData
+	})
+	.then(response => response.text())
+	.then(result => {
+		const responseMessage = document.getElementById('responseMessage');
+		if (result === 'success') {
+			responseMessage.textContent = 'Форма успешно отправлена!';
+			responseMessage.className = 'success-message';
+			form.reset();
+		} else {
+			responseMessage.textContent = 'Ошибка отправки формы. Попробуйте ещё раз.';
+			responseMessage.className = 'error-message';
+		}
+	})
+	.catch(error => {
+		console.error('Ошибка:', error);
+		const responseMessage = document.getElementById('responseMessage');
+		responseMessage.textContent = 'Ошибка отправки формы. Попробуйте ещё раз.';
+		responseMessage.className = 'error-message';
+	});
+});
+	</script>
+</body>
+</html>

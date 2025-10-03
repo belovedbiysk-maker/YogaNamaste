@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Настройки</title>
+    <style>
+        body {
+			margin: 0;
+			font-family: Arial, sans-serif;
+			line-height: 1.6;
+			color: #333;
+		}
+
+
+.container {
+					width: 90%;
+					max-width: 1200px;
+					margin: 0 auto;
+				}
+		
+				h1, h2 {
+					margin: 60px;
+				}
+		
+		
+				h3 {
+				margin-top: 20px;
+				}
+		
+				a {
+					color: #007BFF;
+					text-decoration: none;
+				}
+		
+				a:hover {
+					text-decoration: underline;
+				}
+		
+			p {
+					color: black;
+					text-decoration: none;
+				}
+		
+				/* Шапка сайта */
+				.header {
+					 background: #333;
+					color: #fff;
+					padding: 1em 0;
+					position: fixed;
+					width: 100%;
+					top: 0;
+					left: 0;
+					z-index: 1000;
+				}
+		
+				.header .logo h1 {
+					margin: 0;
+					font-size: 1.5em;
+				}
+		
+				.logo {
+			display: flex;
+			align-items: center; /* Выравнивание элементов по вертикали */
+			gap: 10px; /* Отступ между картинкой и текстом */
+		}
+		
+		.logo img {
+			max-width: 50px; /* Ограничивает размер изображения */
+			height: auto; /* Сохраняет пропорции изображения */
+			cursor: pointer; /* Изменяет курсор на указатель при наведении */
+		}
+		
+		.logo h1 {
+			margin: 0; /* Убирает стандартные отступы */
+			font-size: 24px; /* Размер текста заголовка */
+			font-family: Arial, sans-serif; /* Шрифт для заголовка */
+		}
+		
+			   /* Стили для кнопки бургер-меню */
+		.burger-menu {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			width: 30px; /* Фиксированная ширина кнопки */
+			height: 24px; /* Фиксированная высота кнопки */
+			background: transparent;
+			border: none;
+			cursor: pointer;
+			padding: 0;
+			z-index: 1000; /* Обеспечивает, что кнопка будет на переднем плане */
+			position: fixed; /* Фиксированное позиционирование */
+			top: 30px; /* Отступ сверху от экрана */
+			right: 20px; /* Отступ справа от экрана */
+		}
+		
+		/* Стили для линий меню */
+		.burger-menu span {
+			display: block;
+			width: 30px; /* Фиксированная ширина для линий */
+			height: 4px; /* Фиксированная высота для линий */
+			background-color: black; /* Цвет линий */
+			border-radius: 5px;
+		}
+		
+		/* Эффект при наведении (опционально) */
+		.burger-menu:hover span {
+			background-color: #ccc;
+		}
+		
+		.nav {
+			position: fixed;
+			top: 0;
+			right: -100%; /* Скрыто за пределами экрана */
+			width: 250px;
+			background-color: #333;
+			display: flex;
+			flex-direction: column;
+			gap: 1em;
+			padding: 60px 20px; /* Внутренний отступ */
+			transition: right 0.3s ease; /* Анимация выезда */
+		}
+		
+		.nav.active {
+			right: 0; /* Показываем меню */
+		}
+		
+		.burger-menu.active span:first-child {
+			transform: translateY(8px) rotate(45deg);
+		}
+		
+		.burger-menu.active span:nth-child(2) {
+			opacity: 0;
+		}
+		
+		.burger-menu.active span:last-child {
+			transform: translateY(-8px) rotate(-45deg);
+		}
+		
+		/* Оповещение о новом уведомлении в Личном кабинете */
+		.notification-bell {
+			position: fixed;
+			top: 20px;
+			right: 60px;
+			cursor: pointer;
+			z-index: 1001;
+			background: none;
+			border: none;
+			padding: 8px;
+			border-radius: 50%;
+			transition: background-color 0.2s;
+		}
+		
+		.notification-bell img {
+			max-width: 35px; /* Ограничивает размер изображения */
+			height: auto; /* Сохраняет пропорции изображения */
+			cursor: pointer; /* Изменяет курсор на указатель при наведении */
+		}
+		
+		.notification-bell:hover {
+			background-color: rgba(255, 255, 255, 0.1);
+		}
+		
+		.notification-bell .bell-icon {
+			position: relative;
+			color: white;
+			font-size: 24px;
+		}
+		
+		.notification-bell .count {
+			position: absolute;
+			top: -5px;
+			right: -5px;
+			background-color: #f44336;
+			color: white;
+			border-radius: 50%;
+			padding: 2px 5px;
+			font-size: 12px;
+			min-width: 18px;
+			height: 18px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			animation: pulse 1.5s infinite;
+		}
+		
+		@keyframes pulse {
+			0% { transform: scale(1); }
+			50% { transform: scale(1.1); }
+			100% { transform: scale(1); }
+		}
+		
+		.notifications-panel {
+			position: fixed;
+			top: 70px;
+			right: 20px;
+			background-color: white;
+			width: 320px;
+			border-radius: 8px;
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+			z-index: 1000;
+			opacity: 0;
+			transform: translateY(-10px);
+			transition: opacity 0.3s, transform 0.3s;
+			display: none;
+		}
+		
+		.notifications-panel.active {
+			opacity: 1;
+			transform: translateY(0);
+			display: block;
+		}
+		
+		.notifications-header {
+			padding: 15px 20px;
+			border-bottom: 1px solid #eee;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+		
+		.notifications-header h3 {
+			margin: 0;
+			color: #333;
+			font-size: 16px;
+		}
+		
+		.notification-list {
+			max-height: 400px;
+			overflow-y: auto;
+		}
+		
+		.notification-item {
+			padding: 15px 20px;
+			border-bottom: 1px solid #eee;
+			cursor: pointer;
+			transition: background-color 0.2s;
+			display: flex;
+			align-items: flex-start;
+			gap: 12px;
+		}
+		
+		.notification-item:hover {
+			background-color: #f8f9fa;
+		}
+		
+		.notification-icon {
+			font-size: 20px;
+			color: #666;
+		}
+		
+		.notification-content {
+			flex: 1;
+		}
+		
+		.notification-title {
+			margin: 0 0 5px 0;
+			font-size: 14px;
+			font-weight: 500;
+			color: #333;
+		}
+		
+		.notification-meta {
+			font-size: 12px;
+			color: #666;
+		}
+		
+		.unread-indicator {
+			width: 8px;
+			height: 8px;
+			background-color: #007bff;
+			border-radius: 50%;
+			margin-top: 6px;
+		}
+		
+		.notification-modal {
+			position: fixed;
+			inset: 0;
+			background-color: rgba(0, 0, 0, 0.5);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			z-index: 1100;
+			opacity: 0;
+			visibility: hidden;
+			transition: opacity 0.3s;
+		}
+		
+		.notification-modal.active {
+			opacity: 1;
+			visibility: visible;
+		}
+		
+		.modal-content {
+			background: white;
+			padding: 24px;
+			border-radius: 8px;
+			width: 90%;
+			max-width: 500px;
+			position: relative;
+			transform: translateY(-20px);
+			transition: transform 0.3s;
+		}
+		
+		.notification-modal.active .modal-content {
+			transform: translateY(0);
+		}
+		
+		.modal-close {
+			position: absolute;
+			top: 16px;
+			right: 16px;
+			background: none;
+			border: none;
+			font-size: 24px;
+			cursor: pointer;
+			color: #666;
+		}
+          /* Боковое меню */
+        .sidebar {
+					width: 250px;
+					background-color: #333;
+					color: white;
+					padding: 20px;
+					position: fixed;
+					height: 100%;
+				}
+		
+		.sidebar h2 {
+		color: white;
+					text-decoration: none;
+		}
+		
+				.sidebar a {
+					color: white;
+					text-decoration: none;
+					display: block;
+					padding: 10px;
+					margin: 5px 0;
+					background-color: #444;
+					border-radius: 5px;
+				}
+		
+				.sidebar a:hover {
+					background-color: #007bff;
+				}
+        /* Контент */
+        .content {
+			margin-left: 300px;
+			padding: 20px;
+			width: calc(100% - 250px);
+		}
+        .card {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        h2 {
+            color: #343a40;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            font-size: 16px;
+            color: #343a40;
+        }
+        input[type="text"], input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-top: 5px;
+        }
+        .checkbox {
+            display: flex;
+            align-items: center;
+        }
+        .btn {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+/* Подвал */
+		.footer {
+			background: #333;
+			color: #fff;
+			text-align: center;
+			padding: 1em 0;
+		}
+
+		/* Медиа-запросы */
+@media (max-width: 768px) {
+			.main-container {
+				flex-direction: column;
+			}
+		
+			.sidebar {
+				position: static;
+				width: 100%;
+				height: auto;
+				margin-bottom: 20px;
+			}
+		
+			.content {
+				margin-left: 0;
+				padding: 15px;
+			}
+		
+			.card {
+				margin: 10px 0;
+			}
+		
+			.burger-menu {
+				display: flex;
+			}
+		}
+
+	/* Анимация для бургер-меню */
+	.burger-menu.active span:first-child {
+		transform: translateY(9px) rotate(45deg);
+	}
+
+	.burger-menu.active span:nth-child(2) {
+		opacity: 0;
+	}
+
+	.burger-menu.active span:last-child {
+		transform: translateY(-9px) rotate(-45deg);
+	}
+    </style>
+</head>
+<body>
+
+<!-- Шапка сайта -->
+	<header class="header">
+	<div class="container">
+<button id="mobile-menu" aria-label="Меню" class="burger-menu">
+			<span></span>
+			<span></span>
+			<span></span>
+		</button>
+		<nav class="nav" id="nav">
+			<ul>
+				<li><a href="#catalog">Каталог</a></li>
+				<li><a href="#pricing">Тарифы</a></li>
+				<li><a href="#about">О нас</a></li>
+				<li><a href="#faq">FAQ</a></li>
+				<li><a href="#contact">Контакты</a></li>
+				<li><a href="#account" class="login-button">Личный кабинет</a></li>
+			</ul>
+		</nav>
+		<div class="logo">
+    <a href="index.html">
+        <img src="/Users/Elena/Downloads/Будущий сайт/logo.png" alt="Логотип">
+    </a>
+    <h1>Настройки</h1>
+</div>
+		
+	</div>
+</header>
+
+<!-- Колокольчик уведомлений -->
+<button class="notification-bell" id="notification-bell" aria-label="Уведомления">
+	<div class="bell-icon">
+		<img src="/Users/Elena/Downloads/Будущий сайт/колокольчик.png" alt="Логотип">
+		<span class="count">3</span>
+	</div>
+</button>
+
+<!-- New notifications panel -->
+<div class="notifications-panel" id="notifications-panel">
+	<div class="notifications-header">
+		<h3>Уведомления</h3>
+		<button class="mark-all-read">Прочитать все</button>
+	</div>
+	<div class="notification-list">
+		<!-- Notifications will be inserted here by JavaScript -->
+	</div>
+</div>
+
+<!-- New notification modal -->
+<div class="notification-modal" id="notification-modal">
+	<div class="modal-content">
+		<button class="modal-close">&times;</button>
+		<h3 class="modal-title"></h3>
+		<div class="modal-body"></div>
+		<div class="modal-meta"></div>
+	</div>
+</div>
+
+    <!-- Боковое меню -->
+    <div class="sidebar">
+        <h2>Личный кабинет</h2>
+        <a href="/">Главная</a>
+        <a href="/settings">Настройки</a>
+        <a href="/subscription">Тариф</a>
+        <a href="/notifications">Уведомления</a>
+        <a href="/yoga_practices">Практики Йоги</a>
+        <a href="/yoga_course">Курс по йоге</a>
+	<a href="#">Выход</a>
+    </div>
+
+    <!-- Основной контент -->
+    <div class="content">
+		<div class="card">
+			<h2>Настройки профиля</h2>
+			<form action="/update_profile" method="POST">
+				<!-- Отображение и изменение имени -->
+				<div class="form-group">
+					<label for="name">Имя</label>
+					<input 
+						type="text" 
+						id="name" 
+						name="name" 
+						value="{{ user['name'] }}" 
+						required 
+						placeholder="Введите ваше имя">
+				</div>
+	
+				<!-- Отображение и изменение почты -->
+				<div class="form-group">
+					<label for="email">Email</label>
+					<input 
+						type="email" 
+						id="email" 
+						name="email" 
+						value="{{ user['email'] }}" 
+						required 
+						placeholder="Введите ваш email">
+				</div>
+	
+				<!-- Кнопка для сохранения изменений -->
+				<button type="submit" class="btn">Сохранить изменения</button>
+			</form>
+	
+			<hr>
+	
+			<!-- Удаление аккаунта -->
+			<h3>Удаление личного кабинета</h3>
+			<p>Текущие данные:</p>
+			<ul>
+				<li><strong>Имя:</strong> {{ user['name'] }}</li>
+				<li><strong>Email:</strong> {{ user['email'] }}</li>
+			</ul>
+			<p>При удалении аккаунта все данные будут безвозвратно утрачены.</p>
+			<form action="/delete_account" method="POST" onsubmit="return confirmDelete();">
+				<button type="submit" class="btn" style="background-color: #dc3545;">Удалить аккаунт</button>
+			</form>
+		</div>
+	</div>
+<!-- Подвал -->
+	<footer class="footer">
+		<div class="container">
+			<p>&copy; 2025 Видеоплатформа. Все права защищены.</p>
+		</div>
+	</footer>
+
+<script>
+			document.addEventListener('DOMContentLoaded', function() {
+				// Notification data
+				const notifications = [
+					{
+						id: 1,
+						title: 'Срок подписки истекает',
+						content: 'Ваша подписка закончится через 5 дней. Не забудьте продлить для продолжения доступа к курсам.',
+						timestamp: new Date('2025-01-07T11:00:00'),
+						category: 'subscription',  // Новая категория для уведомлений о подписке
+						priority: 'high',
+						isRead: false
+					},
+					{
+						id: 2,
+						title: 'Новое занятие по йоге',
+						content: 'Добавлено новое занятие по йоге в четверг в 19:00',
+						timestamp: new Date('2025-01-07T10:00:00'),
+						category: 'schedule',
+						priority: 'high',
+						isRead: false
+					},
+					{
+						id: 3,
+						title: 'Обновление расписания',
+						content: 'Расписание на следующую неделю уже доступно',
+						timestamp: new Date('2025-01-07T09:30:00'),
+						category: 'update',
+						priority: 'medium',
+						isRead: false
+					},
+					{
+						id: 4,
+						title: 'Специальное предложение',
+						content: 'Получите скидку 20% на годовую подписку',
+						timestamp: new Date('2025-01-07T09:00:00'),
+						category: 'promo',
+						priority: 'low',
+						isRead: false
+					}
+				];
+	
+				// Get DOM elements
+				const notificationBell = document.getElementById('notification-bell');
+				const notificationsPanel = document.getElementById('notifications-panel');
+				const notificationModal = document.getElementById('notification-modal');
+	
+				// Utility function for formatting timestamps
+				function formatTimestamp(date) {
+					const now = new Date();
+					const diff = now - date;
+					const minutes = Math.floor(diff / 60000);
+					const hours = Math.floor(diff / 3600000);
+					const days = Math.floor(diff / 86400000);
+	
+					if (minutes < 60) return `${minutes} мин назад`;
+					if (hours < 24) return `${hours} ч назад`;
+					return `${days} дн назад`;
+				}
+	
+				// Get category icon
+				function getCategoryIcon(category) {
+					switch (category) {
+						case 'subscription': return '⚠️';  // Иконка для уведомлений о подписке
+						case 'schedule': return '📅';
+						case 'update': return '🔄';
+						case 'promo': return '🎉';
+						default: return '📌';
+					}
+				}
+	
+				// Update notification count
+				function updateNotificationCount() {
+					const unreadCount = notifications.filter(n => !n.isRead).length;
+					const countElement = notificationBell.querySelector('.count');
+					
+					if (unreadCount > 0) {
+						countElement.textContent = unreadCount;
+						countElement.style.display = 'flex';
+					} else {
+						countElement.style.display = 'none';
+					}
+				}
+	
+				// Render notifications
+				function renderNotifications() {
+					const notificationList = document.querySelector('.notification-list');
+					notificationList.innerHTML = notifications.map(notification => `
+						<div class="notification-item" data-id="${notification.id}">
+							<span class="notification-icon">${getCategoryIcon(notification.category)}</span>
+							<div class="notification-content">
+								<h4 class="notification-title">${notification.title}</h4>
+								<span class="notification-meta">${formatTimestamp(notification.timestamp)}</span>
+							</div>
+							${notification.isRead ? '' : '<div class="unread-indicator"></div>'}
+						</div>
+					`).join('');
+				}
+	
+				// Event Listeners
+				notificationBell.addEventListener('click', (e) => {
+					e.stopPropagation();
+					notificationsPanel.classList.toggle('active');
+					console.log('Bell clicked'); // Debug log
+				});
+	
+				// Close panel when clicking outside
+				document.addEventListener('click', (e) => {
+					if (!notificationsPanel.contains(e.target) && !notificationBell.contains(e.target)) {
+						notificationsPanel.classList.remove('active');
+					}
+				});
+	
+				// Handle notification clicks
+				document.querySelector('.notification-list').addEventListener('click', (e) => {
+					const item = e.target.closest('.notification-item');
+					if (item) {
+						const notificationId = parseInt(item.dataset.id);
+						const notification = notifications.find(n => n.id === notificationId);
+						if (notification) {
+							notification.isRead = true;
+							notificationModal.querySelector('.modal-title').textContent = notification.title;
+							notificationModal.querySelector('.modal-body').textContent = notification.content;
+							notificationModal.querySelector('.modal-meta').textContent = 
+								`${getCategoryIcon(notification.category)} ${formatTimestamp(notification.timestamp)}`;
+							notificationModal.classList.add('active');
+							updateNotificationCount();
+							renderNotifications();
+						}
+					}
+				});
+	
+				// Handle "Mark all as read"
+				document.querySelector('.mark-all-read').addEventListener('click', () => {
+					notifications.forEach(n => n.isRead = true);
+					updateNotificationCount();
+					renderNotifications();
+				});
+	
+				// Close modal
+				document.querySelector('.modal-close').addEventListener('click', () => {
+					notificationModal.classList.remove('active');
+				});
+	
+				// Initial render
+				updateNotificationCount();
+				renderNotifications();
+			});
+		</script>
+	</body>
+	</html>

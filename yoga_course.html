@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Мой курс по йоге</title>
+	<style>
+		/* Общие стили */
+			
+				body {
+					margin: 0;
+					font-family: Arial, sans-serif;
+					line-height: 1.6;
+					color: #333;
+				}
+		
+				.container {
+					width: 90%;
+					max-width: 1200px;
+					margin: 0 auto;
+				}
+		
+				h1, h2 {
+					margin: 0.5em 0;
+				}
+		
+			h3 {
+				margin-top: 20px;
+				}
+		
+				a {
+					color: #007BFF;
+					text-decoration: none;
+				}
+		
+				a:hover {
+					text-decoration: underline;
+				}
+		
+			p {
+					color: black;
+					text-decoration: none;
+				}
+		
+				/* Шапка сайта */
+				.header {
+					 background: #333;
+					color: #fff;
+					padding: 1em 0;
+					position: fixed;
+					width: 100%;
+					top: 0;
+					left: 0;
+					z-index: 1000;
+				}
+		
+				.header .logo h1 {
+					margin: 0;
+					font-size: 1.5em;
+				}
+		
+		.header .logo h1 {
+					margin: 0;
+					font-size: 1.5em;
+				}
+		
+				.logo {
+			display: flex;
+			align-items: center; /* Выравнивание элементов по вертикали */
+			gap: 10px; /* Отступ между картинкой и текстом */
+		}
+		
+		.logo img {
+			max-width: 50px; /* Ограничивает размер изображения */
+			height: auto; /* Сохраняет пропорции изображения */
+			cursor: pointer; /* Изменяет курсор на указатель при наведении */
+		}
+		
+		.logo h1 {
+			margin: 0; /* Убирает стандартные отступы */
+			font-size: 24px; /* Размер текста заголовка */
+			font-family: Arial, sans-serif; /* Шрифт для заголовка */
+		}
+		
+			   /* Стили для кнопки бургер-меню */
+		.burger-menu {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			width: 30px; /* Фиксированная ширина кнопки */
+			height: 24px; /* Фиксированная высота кнопки */
+			background: transparent;
+			border: none;
+			cursor: pointer;
+			padding: 0;
+			z-index: 1000; /* Обеспечивает, что кнопка будет на переднем плане */
+			position: fixed; /* Фиксированное позиционирование */
+			top: 30px; /* Отступ сверху от экрана */
+			right: 20px; /* Отступ справа от экрана */
+		}
+		
+		/* Стили для линий меню */
+		.burger-menu span {
+			display: block;
+			width: 30px; /* Фиксированная ширина для линий */
+			height: 4px; /* Фиксированная высота для линий */
+			background-color: black; /* Цвет линий */
+			border-radius: 5px;
+		}
+		
+		/* Эффект при наведении (опционально) */
+		.burger-menu:hover span {
+			background-color: #ccc;
+		}
+		
+		.nav {
+			position: fixed;
+			top: 0;
+			right: -100%; /* Скрыто за пределами экрана */
+			width: 250px;
+			background-color: #333;
+			display: flex;
+			flex-direction: column;
+			gap: 1em;
+			padding: 60px 20px; /* Внутренний отступ */
+			transition: right 0.3s ease; /* Анимация выезда */
+		}
+		
+		.nav.active {
+			right: 0; /* Показываем меню */
+		}
+		
+		.burger-menu.active span:first-child {
+			transform: translateY(8px) rotate(45deg);
+		}
+		
+		.burger-menu.active span:nth-child(2) {
+			opacity: 0;
+		}
+		
+		.burger-menu.active span:last-child {
+			transform: translateY(-8px) rotate(-45deg);
+		}
+		 
+		/* Контент */
+		.content {
+			margin: 0 auto; /* Центрирование блока по горизонтали */
+			padding: 20px;
+			max-width: 1200px; /* Ограничение максимальной ширины */
+			width: 100%; /* Занимает всю доступную ширину */
+			box-sizing: border-box; /* Учитываем padding в ширине */
+		}
+		
+		.course-item {
+			
+			padding: 15px;
+			margin-bottom: 10px;
+		}
+		.course-item h3 {
+			margin: 0;
+			font-size: 24px;
+		}
+		.course-item p {
+			margin: 5px 0;
+			color: #6c757d;
+		}
+		.btn {
+			padding: 10px 20px;
+			background-color: #007bff;
+			color: white;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+		.btn:hover {
+			background-color: #0056b3;
+		}
+		.module-list {
+			margin-top: 20px;
+		}
+		.module-item {
+			margin-bottom: 10px;
+		}
+		.module-item a {
+			text-decoration: none;
+			font-weight: bold;
+			color: #007bff;
+		}
+		.module-item a:hover {
+			text-decoration: underline;
+		}
+		.download-btn {
+			margin-top: 20px;
+			display: inline-block;
+			padding: 10px 20px;
+			background-color: #28a745;
+			color: white;
+			border-radius: 5px;
+			text-decoration: none;
+		}
+		.download-btn:hover {
+			background-color: #218838;
+		}
+
+/* Подвал */
+		.footer {
+			background: #333;
+			color: #fff;
+			text-align: center;
+			padding: 1em 0;
+		}
+
+		/* Медиа-запросы */
+@media (max-width: 768px) {
+			.main-container {
+				flex-direction: column;
+			}
+		
+			.sidebar {
+				position: static;
+				width: 100%;
+				height: auto;
+				margin-bottom: 20px;
+			}
+		
+			.content {
+				margin-left: 0;
+				padding: 15px;
+			}
+		
+			.card {
+				margin: 10px 0;
+			}
+		
+			.burger-menu {
+				display: flex;
+			}
+		}
+
+	/* Анимация для бургер-меню */
+	.burger-menu.active span:first-child {
+		transform: translateY(9px) rotate(45deg);
+	}
+
+	.burger-menu.active span:nth-child(2) {
+		opacity: 0;
+	}
+
+	.burger-menu.active span:last-child {
+		transform: translateY(-9px) rotate(-45deg);
+	}
+	
+	/* Блок вопросы и ответы */
+	.faq-container {
+		max-width: 100%; /* Контейнер занимает всю ширину */
+		margin: 0; /* Убираем внешние отступы */
+		box-sizing: border-box; /* Учитываем padding в ширине */
+	}
+	.faq-container h3 {
+	margin-top: 20px;
+	}
+	
+	.faq-item {
+		margin-bottom: 10px;
+		border: 1px solid #ddd;
+		border-radius: 5px;
+		overflow: hidden;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	}
+	
+	.faq-question {
+		width: 100%; /* Кнопка занимает всю ширину */
+		text-align: left;
+		background: #f3f4f6;
+		color: #333;
+		padding: 15px;
+		border: none;
+		cursor: pointer;
+		font-size: 16px;
+		transition: background 0.3s;
+	}
+	
+	.faq-question:hover {
+		background: #e5e7eb;
+	}
+	
+	.faq-answer {
+		padding: 15px;
+		background: #ffffff;
+		color: #555;
+		display: none; /* Ответ скрыт по умолчанию */
+		border-top: 1px solid #ddd;
+		font-size: 14px;
+	}
+	
+	/* Личный кабинет */
+		.account {
+			padding: 2em 0;
+			text-align: center;
+		}
+	
+		.account form {
+			max-width: 400px;
+			margin: 0 auto;
+			display: flex;
+			flex-direction: column;
+			gap: 1em;
+		}
+	
+		.account input, .account button {
+			padding: 0.5em;
+			border: 1px solid #ddd;
+			border-radius: 5px;
+			font-size: 1em;
+		}
+	
+		.account button {
+			background: #007BFF;
+			color: #fff;
+			cursor: pointer;
+		}
+	
+		.account button:hover {
+			background: #0056b3;
+		}
+	
+	/* Подвал */
+		.footer {
+			background: #333;
+			color: #fff;
+			text-align: center;
+			padding: 1em 0;
+		}
+	</style>
+</head>
+<body>
+
+<!-- Шапка сайта -->
+	<header class="header">
+	<div class="container">
+<button id="mobile-menu" aria-label="Меню" class="burger-menu">
+			<span></span>
+			<span></span>
+			<span></span>
+		</button>
+		<nav class="nav" id="nav">
+			<ul>
+				<li><a href="#catalog">Каталог</a></li>
+				<li><a href="#pricing">Тарифы</a></li>
+				<li><a href="#about">О нас</a></li>
+				<li><a href="#faq">FAQ</a></li>
+				<li><a href="#contact">Контакты</a></li>
+				<li><a href="#account" class="login-button">Личный кабинет</a></li>
+			</ul>
+		</nav>
+		<div class="logo">
+	<a href="index.html">
+		<img src="/Users/Elena/Downloads/Будущий сайт/logo.png" alt="Логотип">
+	</a>
+	<h1>Настройки</h1>
+</div>
+		
+	</div>
+</header>
+<section>
+	<!-- Основной контент -->
+	<div class="content">
+		<div class="card">
+			<h2>Курс по йоге: Yoga Start</h2>
+
+			<div class="course-item">
+				<h3>Онлайн-курс для начинающих</h3>
+				<p>Ваш надёжный проводник в мир йоги.</p>
+				<p>Цель курса — помочь вам сделать йогу ежедневной привычкой. Эти практики могут значительно изменить ваше тело и ум.</p>
+			</div>
+
+			<div class="course-item">
+				<h3>Для кого курс?</h3>
+				<p>Онлайн-курс "Yoga Start" предназначен для всех, кто хочет получить структуру занятий для получения результата.</p>
+
+				<h3>Что вы получите:</h3>
+				<p>• 30 готовых практик.</p>
+				<p>• Структуру занятий для получения результата.</p>
+				<p>• Доступ к видео с разбором отстроек асан и техник йоги.</p>
+				<p>• Поддержку (ответы на вопросы в комментариях к урокам.</p>
+				<div class="module-list">
+					<h3>Что в себя включает курс:</h3>
+					<div class="module-item">
+						<a href="#module2">Асаны для гибкости</a> - Растягивающие упражнения для улучшения гибкости.
+					</div>
+					<div class="module-item">
+						<a href="#module3">Асаны для силы</a> - Упражнения для укрепления мышц и суставов.
+					</div>
+					<div class="module-item">
+						<a href="#module4">Варианты работы с подвижностью суставов</a> - Упражнения для улучшения подвижности суставов.
+					</div>
+				</div>
+			</div>
+
+			<div class="course-item">
+				<h3>Как начать?</h3>
+				<p>Чтобы начать практиковать, вам необходимо только начать.</p>
+				<button class="btn">Начать курс</button>
+				
+				<div class="faq-container">
+					<h3>Ответы на вопросы:</h3>
+					<div class="faq-item">
+						<button class="faq-question">
+							Какой уровень подготовки необходим?
+						</button>
+						<div class="faq-answer">
+							Курс рассчитан на начальный уровень и для тех, кто хочет вернуться к занятиям йоги после длительного перерыва. Курс будет полезен практикам, стремящимся систематизировать свои занятия йоги.
+						</div>
+					</div>
+					<div class="faq-item">
+						<button class="faq-question">
+							Как долго будут доступны материалы курса?
+						</button>
+						<div class="faq-answer">
+							Доступ к материалам курса предоставляется бессрочно. Когда вы будете готовы, вы сможете оформить подписку Premium и получить доступ ко всем занятиям в каталоге.
+						</div>
+					</div>
+					<div class="faq-item">
+						<button class="faq-question">
+							Где я могу найти список всех практик?
+						</button>
+						<div class="faq-answer">
+							Полный список практик доступен в разделе "Практики" на сайте.
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+	<section id="account" class="account">
+	
+				<div id="subscription" style="margin-top: 2em;">
+					<h3>Подписка</h3>
+					<p>Выберите тарифный план:</p>
+					<button onclick="subscribe('basic')">Оформить Премиум (1000 ₽ / месяц)</button>
+					<button onclick="subscribe('premium')">Оформить Yoga Start (5000 ₽ / месяц)</button>
+				</div>
+	
+	</section>
+<!-- Подвал -->
+	<footer class="footer">
+		<div class="container">
+			<p>&copy; 2025 Видеоплатформа. Все права защищены.</p>
+		</div>
+	</footer>
+
+	<script>
+			document.addEventListener('DOMContentLoaded', function () {
+				const burgerMenu = document.getElementById('mobile-menu');
+				const nav = document.getElementById('nav');
+			
+				// Переключение видимости меню при клике на бургер
+				burgerMenu.addEventListener('click', function () {
+					nav.classList.toggle('active');
+					burgerMenu.classList.toggle('active');
+				});
+			
+				// Закрытие меню при клике на ссылку
+				const navLinks = nav.querySelectorAll('a');
+				navLinks.forEach(link => {
+					link.addEventListener('click', function () {
+						nav.classList.remove('active');
+						burgerMenu.classList.remove('active');
+					});
+				});
+			
+				// Закрытие меню при клике вне области меню
+				document.addEventListener('click', function (event) {
+					if (!nav.contains(event.target) && !burgerMenu.contains(event.target)) {
+						nav.classList.remove('active');
+						burgerMenu.classList.remove('active');
+					}
+				});
+			});
+			
+			// Keep existing subscribe function
+			function subscribe(plan) {
+				alert(`Вы выбрали тарифный план: ${plan}. Реализация оплаты на стороне сервера.`);
+			}
+			
+			// Вопросы и ответы
+			document.addEventListener('DOMContentLoaded', () => {
+				const questions = document.querySelectorAll('.faq-question');
+			
+				questions.forEach(question => {
+					question.addEventListener('click', () => {
+						const answer = question.nextElementSibling;
+			
+						// Закрытие всех остальных ответов
+						document.querySelectorAll('.faq-answer').forEach(otherAnswer => {
+							if (otherAnswer !== answer) {
+								otherAnswer.style.display = 'none';
+							}
+						});
+			
+						// Переключение текущего ответа
+						if (answer.style.display === 'block') {
+							answer.style.display = 'none';
+						} else {
+							answer.style.display = 'block';
+						}
+					});
+				});
+			});
+			
+			
+		</script>
+	</body>
+	</html>

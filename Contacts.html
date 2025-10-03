@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Главная страница</title>
+	<link rel="stylesheet" href="styles.css">
+	<style>
+		/* Общие стили */
+		body {
+			margin: 0;
+			font-family: Arial, sans-serif;
+			line-height: 1.6;
+			color: #333;
+		}
+
+		.container {
+			width: 90%;
+			max-width: 1200px;
+			margin: 0 auto;
+		}
+
+		h1, h2 {
+			margin: 60px;
+		}
+
+		h3 {
+		margin-top: 20px;
+		}
+
+		a {
+			color: #007BFF;
+			text-decoration: none;
+		}
+
+		a:hover {
+			text-decoration: underline;
+		}
+
+	p {
+			color: black;
+			text-decoration: none;
+		}
+
+		/* Шапка сайта */
+		.header {
+			 background: #333;
+            color: #fff;
+            padding: 1em 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+		}
+
+		.header .logo h1 {
+			margin: 0;
+			font-size: 1.5em;
+		}
+
+		.logo {
+    display: flex;
+    align-items: center; /* Выравнивание элементов по вертикали */
+    gap: 10px; /* Отступ между картинкой и текстом */
+}
+
+.logo img {
+    max-width: 50px; /* Ограничивает размер изображения */
+    height: auto; /* Сохраняет пропорции изображения */
+    cursor: pointer; /* Изменяет курсор на указатель при наведении */
+}
+
+.logo h1 {
+    margin: 0; /* Убирает стандартные отступы */
+    font-size: 24px; /* Размер текста заголовка */
+    font-family: Arial, sans-serif; /* Шрифт для заголовка */
+}
+
+	   /* Стили для кнопки бургер-меню */
+.burger-menu {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 30px; /* Фиксированная ширина кнопки */
+	height: 24px; /* Фиксированная высота кнопки */
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	padding: 0;
+	z-index: 1000; /* Обеспечивает, что кнопка будет на переднем плане */
+	position: fixed; /* Фиксированное позиционирование */
+	top: 30px; /* Отступ сверху от экрана */
+	right: 20px; /* Отступ справа от экрана */
+}
+
+/* Стили для линий меню */
+.burger-menu span {
+	display: block;
+	width: 30px; /* Фиксированная ширина для линий */
+	height: 4px; /* Фиксированная высота для линий */
+	background-color: black; /* Цвет линий */
+	border-radius: 5px;
+}
+
+/* Эффект при наведении (опционально) */
+.burger-menu:hover span {
+	background-color: #ccc;
+}
+
+.nav {
+	position: fixed;
+	top: 0;
+	right: -100%; /* Скрыто за пределами экрана */
+	width: 250px;
+	background-color: #333;
+	display: flex;
+	flex-direction: column;
+	gap: 1em;
+	padding: 60px 20px; /* Внутренний отступ */
+	transition: right 0.3s ease; /* Анимация выезда */
+}
+
+.nav.active {
+	right: 0; /* Показываем меню */
+}
+
+.burger-menu.active span:first-child {
+	transform: translateY(8px) rotate(45deg);
+}
+
+.burger-menu.active span:nth-child(2) {
+	opacity: 0;
+}
+
+.burger-menu.active span:last-child {
+	transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Формы */
+form {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+input {
+	padding: 10px;
+	margin: 5px 0;
+	border-radius: 4px;
+	border: 1px solid #ccc;
+}
+
+button {
+	padding: 10px;
+	background-color: #007bff;
+	color: white;
+	border: none;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+button:hover {
+	background-color: #0056b3;
+}
+
+/* Ссылки между формами */
+p a {
+	color: #007bff;
+	cursor: pointer;
+}
+
+
+		
+		/* Контакты */
+		.contact {
+			padding: 2em 0;
+		}
+
+		.contact h1 {
+		margin-top: 0px;
+		}
+
+
+.contact h2 {
+text-align: center;
+}
+
+.contact-info {
+		text-align: left;
+		}
+
+		.contact form {
+			max-width: 600px;
+			margin: 0 auto;
+			display: flex;
+			flex-direction: column;
+			gap: 1em;
+		}
+
+		.contact input, .contact textarea, .contact button {
+			padding: 0.5em;
+			border: 1px solid #ddd;
+			border-radius: 5px;
+			font-size: 1em;
+		}
+
+		.contact button {
+			background: #007BFF;
+			color: #fff;
+			cursor: pointer;
+		}
+
+		.contact button:hover {
+			background: #0056b3;
+		}
+
+
+		
+
+		/* Личный кабинет */
+		.account {
+			padding: 2em 0;
+			text-align: center;
+		}
+
+		.account form {
+			max-width: 400px;
+			margin: 0 auto;
+			display: flex;
+			flex-direction: column;
+			gap: 1em;
+		}
+
+		.account input, .account button {
+			padding: 0.5em;
+			border: 1px solid #ddd;
+			border-radius: 5px;
+			font-size: 1em;
+		}
+
+		.account button {
+			background: #007BFF;
+			color: #fff;
+			cursor: pointer;
+		}
+
+		.account button:hover {
+			background: #0056b3;
+		}
+
+		/* Подвал */
+		.footer {
+			background: #333;
+			color: #fff;
+			text-align: center;
+			padding: 1em 0;
+		}
+
+		/* Медиа-запросы */
+@media (max-width: 768px) {
+	.burger-menu {
+		display: flex;
+	}
+
+	.nav {
+		display: none;
+		width: 100%;
+		padding-top: 60px;
+	}
+
+	.nav.active {
+		display: block;
+	}
+
+	/* Анимация для бургер-меню */
+	.burger-menu.active span:first-child {
+		transform: translateY(9px) rotate(45deg);
+	}
+
+	.burger-menu.active span:nth-child(2) {
+		opacity: 0;
+	}
+
+	.burger-menu.active span:last-child {
+		transform: translateY(-9px) rotate(-45deg);
+	}
+
+	.hero h2 {
+		font-size: 1.8em;
+	}
+
+	.pricing-options {
+		flex-direction: column;
+		align-items: center; /* Центрируем элементы в колонке */
+	}
+
+	.pricing-card {
+		max-width: 100%; /* Позволяет карточкам занимать всю ширину контейнера */
+		margin-bottom: 1em; /* Добавляем отступ между карточками */
+	}
+
+	.pricing-card button {
+		width: 100%; /* Кнопки займут всю ширину карточки */
+		max-width: 250px; /* Ограничиваем максимальную ширину кнопки */
+		margin: 0 auto; /* Центрируем кнопку */
+	}
+}
+
+	</style>
+</head>
+
+<body>
+	<!-- Шапка сайта -->
+	<header class="header">
+	<div class="container">
+<button id="mobile-menu" aria-label="Меню" class="burger-menu">
+			<span></span>
+			<span></span>
+			<span></span>
+		</button>
+		<nav class="nav" id="nav">
+			<ul>
+				<li><a href="#catalog">Каталог</a></li>
+				<li><a href="#contact">Курсы</a></li>
+				<li><a href="#pricing">Тарифы</a></li>
+				<li><a href="#faq">FAQ</a></li>
+				<li><a href="#contact">Контакты</a></li>
+				<li><a href="#account" class="login-button">Личный кабинет</a></li>
+			</ul>
+		</nav>
+		<div class="logo">
+    <a href="index.html">
+        <img src="/Users/Elena/Downloads/Будущий сайт/logo.png" alt="Логотип">
+    </a>
+    <h1>Контакты</h1>
+</div>
+		
+	</div>
+</header>
+
+<!-- Контакты -->
+	<section id="contact" class="contact">
+		<div class="container">
+			<h2>Контакты</h2>
+
+<section class="contact" id="contact">
+            <h1>Вы можете связаться с нами через email или через наши страницы в социальных сетях.</h1>
+
+            <div class="contact-info">
+                <h1><strong>Электронная почта:</strong> <a href="mailto:example@example.com">example@example.com</a></h1>      
+            </div>
+
+            <div class="social-media">
+                <h2>Мои социальные сети</h2>
+                <ul>
+                    <li><a href="https://facebook.com" target="_blank">Facebook</a></li>
+                    <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
+                 
+                </ul>
+            </div>
+
+        </section>
+    </main>
+			
+			 <h2>Так же вы можете написать мне ваш вопрос, если не нашли информацию на сайте</h2>
+			<form action="#">
+				<label for="name">Имя:</label>
+				<input type="text" id="name" name="name" required>
+				<label for="email">Email:</label>
+				<input type="email" id="email" name="email" required>
+				<label for="message">Сообщение:</label>
+				<textarea id="message" name="message" required></textarea>
+				<button type="submit">Отправить</button>
+			</form>
+		</div>
+	</section>
+
+<section id="account" class="account">
+
+			<div id="subscription" style="margin-top: 2em;">
+				<h3>Подписка</h3>
+				<p>Выберите тарифный план:</p>
+				<button onclick="subscribe('basic')">Оформить Премиум (1000 ₽ / месяц)</button>
+				<button onclick="subscribe('premium')">Оформить Yoga Start (5000 ₽ / месяц)</button>
+			</div>
+
+</section>
+	<!-- Подвал -->
+	<footer class="footer">
+		<div class="container">
+			<p>&copy; 2025 Видеоплатформа. Все права защищены.</p>
+		</div>
+	</footer>
+
+	<script>
+		function subscribe(plan) {
+			alert(`Вы выбрали тарифный план: ${plan}. Реализация оплаты на стороне сервера.`);
+		}
+
+document.addEventListener('DOMContentLoaded', function() {
+			const burgerMenu = document.getElementById('burgerMenu');
+			const nav = document.getElementById('nav');
+			
+			// Toggle menu when burger is clicked
+			burgerMenu.addEventListener('click', function() {
+				burgerMenu.classList.toggle('active');
+				nav.classList.toggle('active');
+			});
+
+			// Close menu when clicking on a link
+			document.querySelectorAll('.nav a').forEach(link => {
+				link.addEventListener('click', () => {
+					burgerMenu.classList.remove('active');
+					nav.classList.remove('active');
+				});
+			});
+
+			// Close menu when clicking outside
+			document.addEventListener('click', function(event) {
+				if (!nav.contains(event.target) && !burgerMenu.contains(event.target)) {
+					burgerMenu.classList.remove('active');
+					nav.classList.remove('active');
+				}
+			});
+		});
+
+		// Keep existing subscribe function
+		function subscribe(plan) {
+			alert(`Вы выбрали тарифный план: ${plan}. Реализация оплаты на стороне сервера.`);
+		}
+
+
+document.addEventListener('DOMContentLoaded', function () {
+	const burgerMenu = document.getElementById('mobile-menu');
+	const nav = document.getElementById('nav');
+
+	// Переключение меню
+	burgerMenu.addEventListener('click', function () {
+		burgerMenu.classList.toggle('active');
+		nav.classList.toggle('active');
+	});
+
+	// Закрытие меню при нажатии на ссылку
+	document.querySelectorAll('.nav a').forEach(link => {
+		link.addEventListener('click', function () {
+			burgerMenu.classList.remove('active');
+			nav.classList.remove('active');
+		});
+	});
+
+	// Закрытие меню при нажатии вне его
+	document.addEventListener('click', function (event) {
+		if (!nav.contains(event.target) && !burgerMenu.contains(event.target)) {
+			burgerMenu.classList.remove('active');
+			nav.classList.remove('active');
+		}
+	});
+});
+
+
+// Скидки на курс, при подписке на базовый тариф
+
+document.addEventListener('DOMContentLoaded', function () {
+	// Функция для определения статуса пользователя (например, через localStorage)
+	function isSubscriber() {
+		// Предположим, что у нас есть в localStorage или cookie флаг, который сообщает, подписан ли пользователь.
+		return localStorage.getItem('isSubscriber') === 'true'; // Проверка флага
+	}
+
+	// Применяем скидки, если пользователь уже подписан
+	if (isSubscriber()) {
+		// Изменяем цену для подписчиков
+		document.getElementById('lifetime-price').textContent = '3000 ₽ /бессрочно'; // Скидка для подписчиков
+		// Для новых пользователей оставляем обычные цены
+		document.getElementById('monthly-price').textContent = '1000 ₽ / месяц'; // Полная цена
+		document.getElementById('lifetime-price').textContent = '5000 ₽ / бессрочно'; // Полная цена
+	}
+});
+
+// Пример для установки флага подписки при логине или регистрации
+function setSubscriberStatus(isSubscriber) {
+	localStorage.setItem('isSubscriber', isSubscriber ? 'true' : 'false');
+}
+
+// Например, вызвать эту функцию после успешного оформления подписки
+// setSubscriberStatus(true); // Установим флаг как подписчика
+
+// Функция открытия модального окна
+function openModal(videoId, isPremium) {
+	// Проверка на авторизацию (это просто пример, на практике нужно проверять статус с бэкенда)
+	const isLoggedIn = false; // Замените на реальную проверку статуса пользователя
+
+	if (isPremium && !isLoggedIn) {
+		// Если видео премиум и пользователь не авторизован, показываем модальное окно
+		document.getElementById('modal').style.display = 'block';
+		document.getElementById('modal-register').style.display = 'block';
+		document.getElementById('modal-login').style.display = 'none';
+	} else if (!isPremium) {
+		// Если видео не премиум, пользователь может его смотреть
+		window.location.href = `/watch/${videoId}`;
+	}
+}
+
+// Функция закрытия модального окна
+function closeModal() {
+	document.getElementById('modal').style.display = 'none';
+}
+
+// Переключение на форму регистрации
+function switchToRegister() {
+	document.getElementById('modal-register').style.display = 'block';
+	document.getElementById('modal-login').style.display = 'none';
+}
+
+// Переключение на форму авторизации
+function switchToLogin() {
+	document.getElementById('modal-register').style.display = 'none';
+	document.getElementById('modal-login').style.display = 'block';
+}
+
+
+
+
+
+// Авторизация-Регистрация
+document.addEventListener('DOMContentLoaded', function () {
+	// Ссылки для переключения между формами
+	const showRegisterLink = document.getElementById('show-register');
+	const showLoginLink = document.getElementById('show-login');
+
+	// Формы
+	const loginForm = document.getElementById('login-form');
+	const registerForm = document.getElementById('register-form');
+
+	// Переключаем между формами
+	showRegisterLink.addEventListener('click', function() {
+		loginForm.style.display = 'none';
+		registerForm.style.display = 'block';
+	});
+
+	showLoginLink.addEventListener('click', function() {
+		registerForm.style.display = 'none';
+		loginForm.style.display = 'block';
+	});
+
+	// Изначально показываем форму авторизации
+	loginForm.style.display = 'block';
+});
+
+	</script>
+</body>
+</html>
